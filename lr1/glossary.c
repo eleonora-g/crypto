@@ -3,7 +3,7 @@
 #include <stdint.h>
 
 #define FILE_IN "output.txt"
-#define COUNTOF(x) ((sizeof(x))/(sizeof(*x)))
+#define VAL(x) ((sizeof(x))/(sizeof(*x)))
 
 const char* glossary[] = {"my", "you", "to", "very", "i", "this"};
 
@@ -13,18 +13,18 @@ char ch, w[10];
 
 int main () {
 	FILE *f1;
-	for (i = 0; i < COUNTOF(wrd); ++i) wrd[i] = 0;
+	for (i = 0; i < VAL(wrd); ++i) wrd[i] = 0;
 	for (key = 1; key < 26; ++key) {
 		f1 = fopen(FILE_IN, "r");
-		for (i = 0; i < COUNTOF(w); ++i) w[i] = '\0';
+		for (i = 0; i < VAL(w); ++i) w[i] = '\0';
 		while (1) {
 		ch = fgetc(f1);
 		if (ch == ' ' || ch == '\r' || ch == '\n' || ch == EOF || ch == ',' || ch == '.') {
 			if(strlen(w)) {
-				for (i = 0; i < COUNTOF(glossary); ++i)
+				for (i = 0; i < VAL(glossary); ++i)
 				if (strcmp(w, glossary[i]) == 0) {wrd[key - 1]++; break;}
 				}
-			for (i = 0; i < COUNTOF(w); ++i) w[i] = '\0';
+			for (i = 0; i < VAL(w); ++i) w[i] = '\0';
 			if (ch == EOF) break;
 		}
 		else {
@@ -40,7 +40,7 @@ int main () {
 	}
 	key = 0;
 	ch = 0;
-	for (i = 0; i < COUNTOF(wrd); ++i) {
+	for (i = 0; i < VAL(wrd); ++i) {
 		if (wrd[i] > ch) {
 			ch = wrd[i];
 			key = i + 1;
