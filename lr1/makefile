@@ -19,3 +19,6 @@ third: variant.c
 fourth: glossary.c
 	$(CC) glossary.c -o glossary
 	./glossary
+	
+clean:
+	-rm -rf crypt decript variant glossary
